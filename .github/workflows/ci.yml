@@ -8,6 +8,21 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  services:
+    # Label used to access the service container
+    postgres:
+      # Docker Hub image
+      image: latest
+      # Provide the password for postgres
+      env:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: secret
+      # Set health checks to wait until postgres has started
+      options: >-
+        --health-cmd pg_isready
+        --health-interval 10s
+        --health-timeout 5s
+        --health-retries 5
 
 jobs:
 
@@ -20,9 +35,18 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.19
-
-    - name: Build
-      run: go build -v ./...
-
+    - name: Connect to PostgreSQL
+      # Runs a script that creates a PostgreSQL table, populates
+      # the table with data, and then retrieves the data.
+      run: make postgres
+      # Environment variables used by the `client.js` script to create a new PostgreSQL table.
+      env:
+        # The hostname used to communicate with the PostgreSQL service container
+        POSTGRES_HOST: postgres12
+        # The default PostgreSQL port
+        POSTGRES_PORT: 5432
+    
+    - name: Setup postgres DB
+      run: make migrateup
     - name: Test
       run: make test
