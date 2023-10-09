@@ -1,12 +1,11 @@
 package tests
 
 import (
+	"context"
 	"database/sql"
+	"github.com/stretchr/testify/require"
 	"github/aspiremore/simplebank/db/util"
 	"testing"
-	"context"
-	"github/aspiremore/simplebank/db/sqlc"
-	"github.com/stretchr/testify/require"
 )
 
 func CreateRandomAccount(t *testing.T)  db.Account {

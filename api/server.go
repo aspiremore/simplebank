@@ -1,18 +1,18 @@
 package api
 
 import (
-	db "github/aspiremore/simplebank/db/sqlc"
+	db "github.com/aspiremore/simplebank/db/sqlc"
 
 	"github.com/gin-gonic/gin"
 )
 
 // All HTTP server request goes through this struct
 type Server struct {
-	store  *db.Store
+	store  db.Store
 	router *gin.Engine
 }
 
-func NewServer(store *db.Store) *Server {
+func NewServer(store db.Store) *Server {
 	server := &Server{store: store}
 	router := gin.Default()
 

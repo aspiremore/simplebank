@@ -3,7 +3,7 @@ package api
 import (
 	"database/sql"
 	"fmt"
-	db "github/aspiremore/simplebank/db/sqlc"
+	db "github.com/aspiremore/simplebank/db/sqlc"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

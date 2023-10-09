@@ -2,9 +2,9 @@ package main
 
 import (
 	"database/sql"
-	"github/aspiremore/simplebank/api"
-	db "github/aspiremore/simplebank/db/sqlc"
-	"github/aspiremore/simplebank/db/util"
+	"github.com/aspiremore/simplebank/api"
+	db "github.com/aspiremore/simplebank/db/sqlc"
+	"github.com/aspiremore/simplebank/db/util"
 	"log"
 
 	_ "github.com/lib/pq"

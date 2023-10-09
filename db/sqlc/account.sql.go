@@ -66,7 +66,7 @@ Delete from accounts where id = $1
 `
 
 func (q *Queries) DeleteAccount(ctx context.Context, id int64) error {
-	_, err := q.db.(ctx, deleteAccount, id)
+	_, err := q.db.ExecContext(ctx, deleteAccount, id)
 	return err
 }
 
