@@ -1,4 +1,4 @@
-CREATE TABLE "Users"
+CREATE TABLE "users"
 (
     "username"            varchar PRIMARY KEY,
     "email"               varchar UNIQUE NOT NULL,
@@ -12,4 +12,4 @@ CREATE TABLE "Users"
 
 
 ALTER TABLE "accounts" ADD constraint  "owner_currency_key" unique ("owner", "currency");
-ALTER TABLE "accounts" ADD FOREIGN KEY ("owner") REFERENCES "Users" ("username");
+ALTER TABLE "accounts" ADD FOREIGN KEY ("owner") REFERENCES "users" ("username");
