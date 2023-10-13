@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	db "github.com/aspiremore/simplebank/db/sqlc"
+	"github.com/lib/pq"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -27,6 +28,13 @@ func (s *Server) createAccount(ctx *gin.Context) {
 		Balance:  0,
 	})
 	if err != nil {
+		if pqErr,ok:= err.(*pq.Error); ok {
+			switch pqErr.Code {
+			case "foreign_key_violation","unique_violation":
+				ctx.JSON(http.StatusForbidden, errResponse(err))
+				return
+			}
+		}
 		ctx.JSON(http.StatusInternalServerError, errResponse(err))
 		return
 	}

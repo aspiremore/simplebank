@@ -2,7 +2,8 @@ package tests
 
 import (
 	"database/sql"
-	"github/aspiremore/simplebank/db/util"
+	db "github.com/aspiremore/simplebank/db/sqlc"
+	"github.com/aspiremore/simplebank/db/util"
 	"log"
 	"os"
 	"testing"

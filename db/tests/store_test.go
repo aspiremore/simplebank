@@ -3,8 +3,8 @@ package tests
 import (
 	"context"
 	"fmt"
+	db "github.com/aspiremore/simplebank/db/sqlc"
 	"github.com/stretchr/testify/require"
-	db "github/aspiremore/simplebank/db/sqlc"
 	"testing"
 )
 
