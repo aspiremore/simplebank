@@ -39,3 +39,10 @@ type User struct {
 	HashedPassword    string    `json:"hashed_password"`
 	FullName          string    `json:"full_name"`
 }
+type UserResponse struct {
+	Username          string    `json:"username"`
+	Email             string    `json:"email"`
+	CreatedAt         time.Time `json:"created_at"`
+	PasswordChangedAt time.Time `json:"password_changed_at"`
+	FullName          string    `json:"full_name"`
+}
