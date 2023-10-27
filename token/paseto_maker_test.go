@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 )
-//valid case
-func TestJWTMaker(t *testing.T)  {
-	tokenMaker, err := NewJwtMaker(util.RandomString(32))
+
+func TestPasetoMaker(t *testing.T)  {
+	tokenMaker, err := NewPasetoMaker(util.RandomString(32))
 	require.NoError(t, err)
 	duration := time.Minute
 	issuedAt := time.Now()
@@ -30,8 +30,8 @@ func TestJWTMaker(t *testing.T)  {
 	require.WithinDuration(t,issuedAt, payload.IssuedAt, time.Second)
 }
 
-func TestExpiredToken(t *testing.T)  {
-	tokenMaker, err := NewJwtMaker(util.RandomString(32))
+func TestPasetoExpiredToken(t *testing.T)  {
+	tokenMaker, err := NewPasetoMaker(util.RandomString(32))
 	require.NoError(t, err)
 
 	//create token
@@ -44,6 +44,7 @@ func TestExpiredToken(t *testing.T)  {
 	//validate token
 	payload, err := tokenMaker.VerifyToken(token)
 	require.Error(t, err)
-	require.EqualError(t, err, err.Error())
+	require.EqualError(t, err, ErrExpiredToken.Error())
 	require.Nil(t, payload)
 }
+
