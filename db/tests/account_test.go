@@ -10,7 +10,8 @@ import (
 )
 
 func CreateRandomAccount(t *testing.T)  db.Account {
-	arg := db.CreateAccountParams{Balance: util.RandomMoney(), Owner: util.RandomOwner(), Currency: util.RandomCurrency()}
+	user := CreateRandomUser(t)
+	arg := db.CreateAccountParams{Balance: util.RandomMoney(), Owner: user.Username, Currency: util.RandomCurrency()}
 	account, err := testQueries.CreateAccount(context.Background(), arg)
 	require.NoError(t, err)
 	require.NotEmpty(t, account)
